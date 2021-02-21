@@ -19,7 +19,7 @@
     </head>
     <body class="h-full grid place-items-center">
         <div x-data="state()" x-init="setInit" class="w-full">
-            <div class="m-auto max-w-xs shadow-lg rounded-md">
+            <div class="m-auto my-4 max-w-xs shadow-lg rounded-md">
                 <!-- Add task input -->
                 <div class="bg-blue-400 p-4 rounded-t-md">
                     <form @submit.prevent="addNewTask">
@@ -49,12 +49,20 @@
                 </div>
 
                 <!-- Task footer -->
-                <div class="bg-blue-400 p-3 flex justify-end rounded-b-md">
+                <div class="bg-blue-400 p-3 flex justify-end rounded-b-md space-x-4">
                     <button
                         class="focus:outline-none uppercase text-xs text-blue-100 border-none bg-gray-700 p-2 font-bold rounded shadow"
                         x-show="tasks.length > 0"
+                        @click="clearAll()"
                     >
-                        Clear
+                        Clear All
+                    </button>
+                    <button
+                        class="focus:outline-none uppercase text-xs text-blue-100 border-none bg-gray-700 p-2 font-bold rounded shadow"
+                        x-show="tasks.length > 0"
+                        @click="clearChecked()"
+                    >
+                        Clear Checked
                     </button>
                 </div>
             </div>
@@ -81,10 +89,15 @@
                     this.input = '';
                     localStorage.setItem('todo', JSON.stringify(this.tasks));
                 },
-                clear() {
+                clearAll() {
                     this.input = '';
                     this.tasks = [];
                     localStorage.setItem('todo', '');
+                },
+                clearChecked() {
+                    this.input = '';
+                    this.tasks = this.tasks.filter((task) => task.completed != true);
+                    localStorage.setItem('todo', JSON.stringify(this.tasks));
                 },
             };
         }
