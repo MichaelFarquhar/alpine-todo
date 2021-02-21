@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Alpine Todo</title>
+        <title>Alpine Todo List</title>
 
         <script
             type="module"
@@ -17,13 +17,76 @@
         ></script>
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
     </head>
-    <body>
-        <div>Hello World</div>
+    <body class="h-full grid place-items-center">
+        <div x-data="state()" x-init="setInit" class="w-full">
+            <div class="m-auto max-w-xs shadow-lg rounded-md">
+                <!-- Add task input -->
+                <div class="bg-blue-400 p-4 rounded-t-md">
+                    <form @submit.prevent="addNewTask">
+                        <input
+                            x-model="input"
+                            class="w-full bg-blue-400 text-white placeholder-gray-200 focus:outline-none border-b-2"
+                            placeholder="Add new task..."
+                        />
+                    </form>
+                </div>
+
+                <!-- Task list -->
+                <div class="p-3">
+                    <span x-show="tasks.length <= 0" class="center italic text-gray-300"
+                        >No tasks added</span
+                    >
+
+                    <template x-for="task in tasks" :key="task">
+                        <div class="flex items-center">
+                            <input class="m-2" type="checkbox" x-model="task.completed" />
+                            <div
+                                x-text="task.task"
+                                :class="{ 'line-through': task.completed }"
+                            ></div>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Task footer -->
+                <div class="bg-blue-400 p-3 flex justify-end rounded-b-md">
+                    <button
+                        class="focus:outline-none uppercase text-xs text-blue-100 border-none bg-gray-700 p-2 font-bold rounded shadow"
+                        x-show="tasks.length > 0"
+                    >
+                        Clear
+                    </button>
+                </div>
+            </div>
+        </div>
     </body>
 
     <script>
         function state() {
-            return {};
+            return {
+                input: '',
+                tasks: [],
+
+                setInit() {
+                    if (localStorage.getItem('todo')?.length) {
+                        this.tasks = JSON.parse(localStorage.getItem('todo'));
+                    }
+                },
+
+                addNewTask() {
+                    this.tasks.push({
+                        task: this.input,
+                        completed: false,
+                    });
+                    this.input = '';
+                    localStorage.setItem('todo', JSON.stringify(this.tasks));
+                },
+                clear() {
+                    this.input = '';
+                    this.tasks = [];
+                    localStorage.setItem('todo', '');
+                },
+            };
         }
     </script>
 </html>
