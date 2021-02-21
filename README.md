@@ -1,6 +1,6 @@
 # Todo List - AlpineJs + Tailwindcss
 
-> [Live Demo](https://github.com) (Github Pages)
+> [Live Demo](https://michaelfarquhar.github.io/alpine-todo/) (Github Pages)
 
 ---
 
