@@ -1,6 +1,4 @@
-# Basic Todo List
-
-## AplineJs / Tailwindcss
+# Todo - AlpineJs + Tailwindcss
 
 > [Live Demo](https://github.com) (Github Pages).
 
