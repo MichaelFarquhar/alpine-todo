@@ -1,11 +1,9 @@
 # Todo List - AlpineJs + Tailwindcss
 
-![stack](https://i.imgur.com/VTVqvfP.png)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![AlpineJs](https://img.shields.io/badge/AlpineJS-8BC0D0?style=for-the-badge&logo=alpine.js&logoColor=black)
 
-> [Live Demo - Github Pages](https://michaelfarquhar.github.io/alpine-todo/)
+This is a very barebones todo-list created for learning and practicing Alpine.js and Tailwind CSS. Additionally, I challenged myself to make it fully functional within a single HTML file.
 
----
-
-A small todo-list I created to learn [alpinejs](https://github.com/alpinejs/alpine). It seems to couple well with [tailwindcss](https://tailwindcss.com/) so it was a good time to experience that also.
-
-Everything is done within a single html file. Both frameworks were loaded through a CDN.
+[Live Demo](https://michaelfarquhar.github.io/alpine-todo/)
